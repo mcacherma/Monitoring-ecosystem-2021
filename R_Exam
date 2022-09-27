@@ -1,0 +1,46 @@
+
+
+
+ba14 <- raster("c_gls_BA300_201401100000_GLOBE_PROBAV_V1.0.1.nc")
+ba22 <- raster("c_gls_BA300_202201100000_GLOBE_S3_V1.2.1.nc")
+
+#changing the color palette 
+CLF <- colorRampPalette(c("yellow", "red", "darkred"))(100)
+
+#cropping on my region
+ext <- c(-10,1,36,44) 
+ext3 <- c(-8,-6,40,42)
+ba14 <- crop(ba14, ext3)
+ba22 <- crop(ba22, ext3)
+
+par(mfrow=c(1,2))
+plot(ba14, col=CLF, main="burned areas 2014")
+plot(ba22, col=CLF, main="burned areas 2022")
+
+dev.off()
+
+
+
+#changing the colors using those from the "greenbrown" package. See more at: https://rdrr.io/rforge/greenbrown/src/R/brgr.colors.R
+NC <- colorRampPalette(c("chocolate4", "orange", "yellow", "grey", "green", "forestgreen", "darkgreen"))(100)
+
+ndvi14 <- crop(ndvi14, ext3)
+ndvi22 <- crop(ndvi22, ext3)
+
+#plotting the images together using the par function
+
+par(mfrow=c(1,2))
+plot(ndvi14, col=NC, main="NDVI 2014")
+plot(ndvi22, col=NC, main="NDVI 2021")
+
+
+---------------------------
+x <-c(-10,-6, 38, 44)
+ndvi14 <- crop(ndvi14, ext)
+ndvi22 <- crop(ndvi22, ext)
+
+
+
+par(mfrow=c(1,2))
+plot(ndvi14, col=NC, main="NDVI 2014")
+plot(ndvi22, col=NC, main="NDVI 2021")
