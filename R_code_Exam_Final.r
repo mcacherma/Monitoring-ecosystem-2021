@@ -93,22 +93,24 @@ dev.off()
 
 ##The created plots look ok, but lets try to make them more clear with ggplot2 function and viridis color scales.
 
-ndvip1 <- ggplot() +      #basic frame of ggplot
+#NDVI plots
+ggplot() +      #basic frame of ggplot
 geom_raster(ndvi17, mapping = aes(x=x, y=y, fill=Normalized.Difference.Vegetation.Index.333M )) + #adding aestetics and data
 scale_fill_viridis(option="cividis") +  #use viridis color scales
 ggtitle("NDVI 2017")
 
-ndvip2 <- ggplot() +
+ggplot() +
 geom_raster(ndvi22, mapping = aes(x=x, y=y, fill=Normalized.Difference.Vegetation.Index.333m )) +
 scale_fill_viridis(option="cividis") +
 ggtitle("NDVI 2022")
 
-fcp1 <- ggplot() +
+#Fcover plots
+ggplot() +
 geom_raster(fc17, mapping = aes(x=x, y=y, fill=Fraction.of.green.Vegetation.Cover.1km )) +
 scale_fill_viridis(option="cividis") +
 ggtitle("FCover 2017")
 
-fcp2 <- ggplot() +
+ggplot() +
 geom_raster(fc20, mapping = aes(x=x, y=y, fill=Fraction.of.green.Vegetation.Cover.1km )) +
 scale_fill_viridis(option="cividis") +
 ggtitle("FCover 2020")
@@ -137,9 +139,8 @@ plot(ba20, col=CLF, main="Burnt areas summer 2020")
 
 dev.off()
 
-#.................................
 
-##Next, lets show in a histogram and a boxpplot in detail the frequency distribution of NDVI and Fcover, to mark the differences.
+##Next, lets show in a histogram and a boxpplot in detail the frequency distribution of NDVI and Fcover changes, to mark the difference in change over the years.
 #histogram
 par(mfrow=c(1,2))
 hist(ndvidiff, col="limegreen", xlab="NDVI change", main= "NDVI change between 2017 and 2022")
