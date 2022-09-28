@@ -1,4 +1,26 @@
-setwd("c:/R LAB/")
+#hello world
+
+install.packages("ncdf4") 
+#to recall the package installed, I need to use the function library 
+library(ncdf4)
+
+#package useful to create graphics 
+install.packages("ggplot2")
+library(ggplot2)
+
+#package useful for remote sensing image processing 
+install.packages("RStoolbox")
+library(RStoolbox)
+
+#package useful to read and manipulate spatial data since I have raster (pixel) data 
+install.packages("raster")
+library(raster)
+
+
+
+setwd("C:/R LAB/")
+
+
 ndvi14 <- raster("c_gls_NDVI300_201401010000_GLOBE_PROBAV_V1.0.1.nc")
 ndvi22 <- raster("c_gls_NDVI300_202201010000_GLOBE_OLCI_V2.0.1.nc")
 
