@@ -1,0 +1,77 @@
+#hello world
+
+install.packages("ncdf4") 
+#to recall the package installed, I need to use the function library 
+library(ncdf4)
+
+#package useful to create graphics 
+install.packages("ggplot2")
+library(ggplot2)
+
+#package useful for remote sensing image processing 
+install.packages("RStoolbox")
+library(RStoolbox)
+
+#package useful to read and manipulate spatial data since I have raster (pixel) data 
+install.packages("raster")
+library(raster)
+
+
+
+setwd("C:/R LAB/")
+
+
+ndvi17 <- raster("c_gls_NDVI300_201701010000_GLOBE_PROBAV_V1.0.1.nc")
+ndvi22 <- raster("c_gls_NDVI300_202201010000_GLOBE_OLCI_V2.0.1.nc")
+
+ba17 <- raster("c_gls_BA300_201708100000_GLOBE_PROBAV_V1.0.1.nc")
+ba18 <- raster("c_gls_BA300_201808100000_GLOBE_PROBAV_V1.0.1.nc")
+ba19 <- raster("c_gls_BA300_201908100000_GLOBE_PROBAV_V1.1.1.nc")
+ba20 <- raster("c_gls_BA300_202008100000_GLOBE_PROBAV_V1.1.1.nc")
+ba21 <- raster("c_gls_BA300_202108100000_GLOBE_S3_V1.2.1.nc")
+ba22 <- raster("c_gls_BA300_202205100000_GLOBE_S3_V1.2.1.nc")
+
+#changing the color palette 
+CLF <- colorRampPalette(c("yellow", "red", "darkred"))(100)
+
+#cropping on my region
+ext <- c(-10,-6,40,44)
+
+ba17 <- crop(ba17, ext)
+ba18 <- crop(ba18, ext)
+ba19 <- crop(ba19, ext)
+ba20 <- crop(ba20, ext)
+ba21 <- crop(ba21, ext)
+ba22 <- crop(ba22, ext)
+
+ndvi17 <- crop(ndvi17, ext)
+ndvi22 <- crop(ndvi22, ext)
+
+#changing the colors using those from the "greenbrown" package. See more at: https://rdrr.io/rforge/greenbrown/src/R/brgr.colors.R
+NC <- colorRampPalette(c("chocolate4", "orange", "yellow", "grey", "green", "forestgreen", "darkgreen"))(100)
+
+
+#plotting the images together using the par function
+
+par(mfrow=c(1,2))
+plot(ndvi17, col=NC, main="NDVI 2014")
+plot(ndvi22, col=NC, main="NDVI 2021")
+
+dev.off()
+
+#plot the BA
+
+par(mfrow=c(2,3))
+plot(ba17, col=CLF, main="burned areas summer 2017")
+plot(ba18, col=CLF, main="burned areas summer 2018")
+plot(ba19, col=CLF, main="burned areas summer 2019")
+plot(ba20, col=CLF, main="burned areas summer 2020")
+plot(ba21, col=CLF, main="burned areas summer 2021")
+plot(ba22, col=CLF, main="burned areas spring 2022")
+
+dev.off()
+
+
+
+
+
