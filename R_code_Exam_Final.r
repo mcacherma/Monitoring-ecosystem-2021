@@ -1,4 +1,4 @@
-##IMPACT OF WILD FIRES ON THE VEGETATION IN GALICIA AND NORTHERN PORTUGAL
+##IMPACT OF FOREST FIRES ON VEGETATIONS COVER CHANGES IN GALICIA AND NORTHERN PORTUGAL
 
 #Assessing the impact of forest fires on regional vegetation using copernicus satelite images. 
 #Looking at three indicators: Burnt Area (BA), normalized difference vegetation index (NDVI), Foliage cover (Fcover)
