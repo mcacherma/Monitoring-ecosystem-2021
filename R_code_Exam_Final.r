@@ -1,5 +1,10 @@
 ##IMPACT OF WILD FIRES ON THE VEGETATION IN GALICIA AND NORTHERN PORTUGAL
 
+#Assessing the impact of forest fires on regional vegetation using copernicus satelite images. 
+#Looking at three indicators: Burnt Area (BA), normalized difference vegetation index (NDVI), Foliage cover (Fcover)
+
+
+
 ##installation of packages:
 #to read the Copernicus data it is needed to use "" since the data is imported external to R.
 install.packages("ncdf4") 
@@ -146,18 +151,11 @@ par(mfrow=c(1,2))
 hist(ndvidiff, col="limegreen", xlab="NDVI change", main= "NDVI change between 2017 and 2022")
 hist(fcdiff, col="limegreen", xlab="FCover change", main= "FCover change between 2017 and 2020")
 
-#Transform data with stack function to create a boxplot
+#Transform data with stack function in order to create a boxplot
 NDVIstack <- stack(ndvi17, ndvi22)
-#plot(NDVIstack) # just to see the stack out of couriosity
+#plot(NDVIstack) # just to see the stack out of couriosity and make sure the plots are in the right order
 FCOVERstack <- stack(fc17, fc20)
 par(mfrow=c(1,2))
-boxplot(NDVIstack,vertical=T,axes=T,outline=F, col="limegreen",ylab="NDVI change", xlab="Left: 2017 Right 2022", main="NDVI Boxplot")
-boxplot(FCOVERstack,vertical=T,axes=T,outline=F, col="limegreen",ylab="FCOVER change", xlab="Left: 2017 Right 2020", main="FCover Boxplot") 
-
-#plotting histogram and boxplot together
-par(mfrow=c(2,2))
-hist(ndvidiff, col="limegreen", xlab="NDVI change", main= "NDVI change between 2017 and 2022")
-hist(fcdiff, col="limegreen", xlab="FCover change", main= "FCover change between 2017 and 2020")
 boxplot(NDVIstack,vertical=T,axes=T,outline=F, col="limegreen",ylab="NDVI change", xlab="Left: 2017 Right 2022", main="NDVI Boxplot")
 boxplot(FCOVERstack,vertical=T,axes=T,outline=F, col="limegreen",ylab="FCOVER change", xlab="Left: 2017 Right 2020", main="FCover Boxplot") 
 
